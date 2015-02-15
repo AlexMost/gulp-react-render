@@ -10,7 +10,7 @@ npm install gulp-react-render
 ```javascript
 var react_render = require('gulp-react-render');
 
-gulp.task('coffee', function() {
+gulp.task('prerender', function() {
   gulp.src('./src/*.html')
     .pipe(react_render())
     .pipe(gulp.dest('./public/'))
