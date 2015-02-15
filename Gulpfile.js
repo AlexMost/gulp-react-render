@@ -2,6 +2,7 @@ var coffee = require('gulp-coffee');
 var gulp = require('gulp');
 var gutil = require('gutil');
 var nodeunit = require('gulp-nodeunit');
+require('coffee-script/register');
 
 gulp.task('default', function(){
     gulp.src("./src/**/*.coffee")
