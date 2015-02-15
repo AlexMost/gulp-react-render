@@ -9,7 +9,7 @@ gulp.task('default', function(){
     .pipe(gulp.dest('./tasks'))
 });
 
-gulp.task('test', ['default'], function(){
+gulp.task('test', function(){
     gulp.src('./test').pipe(nodeunit({reporter: "tap"}));
 });
 
