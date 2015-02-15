@@ -3,7 +3,6 @@
 
 # Copyright (c) 2015 AlexMost
 # Licensed under the MIT license.
-
 path = require 'path'
 through = require 'through2'
 cheerio = require 'cheerio'
