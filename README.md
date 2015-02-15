@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/AlexMost/abs.js.svg?branch=master)](https://travis-ci.org/AlexMost/gulp-react-render)
 # gulp-react-render
 Gulp plugin for rendering reactjs components in existing markup
 
