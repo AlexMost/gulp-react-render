@@ -14,8 +14,8 @@ PluginError = gutil.PluginError
 renderComponent = (componentPath, componentProps) ->
     component = require componentPath    
     props = componentProps or {}
-    React.renderToString(React.createElement(component, props))
-
+    react = React.createElement(component, props)
+    React.renderToString(react)
 
 module.exports = ->
     transform = (file, enc, cb) ->
@@ -29,8 +29,13 @@ module.exports = ->
 
         $('*[data-rcomp]').each (index, comp) ->
             comp_path = path.resolve(basedir, $(comp).data().rcomp)
+            prop_json = $(comp).data().rpropfile
+            if (prop_json) 
+                props = require(path.resolve(basedir, prop_json))
+            else
+                props = $(comp).data().rprop
             $(comp).html(renderComponent(
-                comp_path, $(comp).data().rprop))
+                comp_path, props))
 
         file.contents = new Buffer $.html()
 
