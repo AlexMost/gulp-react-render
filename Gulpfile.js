@@ -11,7 +11,7 @@ gulp.task('default', function(){
 });
 
 gulp.task('test', function(){
-    gulp.src('./test').pipe(nodeunit({reporter: "tap"}));
+    gulp.src('./test').pipe(nodeunit({reporter: "minimal"}));
 });
 
 gulp.task('watch', function(){
