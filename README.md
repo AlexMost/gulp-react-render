@@ -95,4 +95,24 @@ You can pass props to React object adding json to the data-rprop attribute, exe:
 
 Rember to encode HTML special chars.
 
+### Using props from json file
+
+If you have many properties, it can be better to put the data into an extra json file. This can be done with the data-rpropfile attribute, e.g.:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </head>
+    <body>
+        <div class="container">
+            <div data-rcomp="./test/fixtures/comp1" data-rpropfile="./test/fixtures/comp1.json" id="container"></div>            
+        </div>
+</body>
+</html>
+```
+
+
 

@@ -13,10 +13,11 @@ gutil = require('gutil');
 PluginError = gutil.PluginError;
 
 renderComponent = function(componentPath, componentProps) {
-  var component, props;
+  var component, props, react;
   component = require(componentPath);
   props = componentProps || {};
-  return React.renderToString(React.createElement(component, props));
+  react = React.createElement(component, props);
+  return React.renderToString(react);
 };
 
 module.exports = function() {
@@ -29,9 +30,15 @@ module.exports = function() {
     $ = cheerio.load(file.contents.toString('utf8'));
     basedir = process.cwd();
     $('*[data-rcomp]').each(function(index, comp) {
-      var comp_path;
+      var comp_path, prop_json, props;
       comp_path = path.resolve(basedir, $(comp).data().rcomp);
-      return $(comp).html(renderComponent(comp_path, $(comp).data().rprop));
+      prop_json = $(comp).data().rpropfile;
+      if (prop_json) {
+        props = require(path.resolve(basedir, prop_json));
+      } else {
+        props = $(comp).data().rprop;
+      }
+      return $(comp).html(renderComponent(comp_path, props));
     });
     file.contents = new Buffer($.html());
     return cb(null, file);
