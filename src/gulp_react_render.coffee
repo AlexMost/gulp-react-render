@@ -7,6 +7,7 @@ path = require 'path'
 through = require 'through2'
 cheerio = require 'cheerio'
 React = require 'react'
+ReactDOMServer = require 'react-dom/server'
 gutil = require 'gutil'
 
 PluginError = gutil.PluginError
@@ -14,8 +15,8 @@ PluginError = gutil.PluginError
 renderComponent = (componentPath, componentProps) ->
     component = require componentPath    
     props = componentProps or {}
-    react = React.createElement(component, props)
-    React.renderToString(react)
+    element = React.createElement(component, props)
+    ReactDOMServer.renderToString(element)
 
 module.exports = ->
     transform = (file, enc, cb) ->

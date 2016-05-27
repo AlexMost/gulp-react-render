@@ -1,4 +1,4 @@
-var PluginError, React, cheerio, gutil, path, renderComponent, through;
+var PluginError, React, ReactDOMServer, cheerio, gutil, path, renderComponent, through;
 
 path = require('path');
 
@@ -8,16 +8,18 @@ cheerio = require('cheerio');
 
 React = require('react');
 
+ReactDOMServer = require('react-dom/server');
+
 gutil = require('gutil');
 
 PluginError = gutil.PluginError;
 
 renderComponent = function(componentPath, componentProps) {
-  var component, props, react;
+  var component, element, props;
   component = require(componentPath);
   props = componentProps || {};
-  react = React.createElement(component, props);
-  return React.renderToString(react);
+  element = React.createElement(component, props);
+  return ReactDOMServer.renderToString(element);
 };
 
 module.exports = function() {
